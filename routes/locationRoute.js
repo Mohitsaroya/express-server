@@ -10,6 +10,6 @@ router.get('/closelocations/', locationController.getLocations);
 router.get('/alllocations/', locationController.getAllLocations);
 
 // This route will add a new location
-router.post('/location/', locationController.addLocation);
+router.post('/location/', locationController.createLocation);
 
 module.exports = router;
