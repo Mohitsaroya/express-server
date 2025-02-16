@@ -1,6 +1,9 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const cors = require('cors');
+
+app.use(cors()); // Allow all origins (for development)
 
 // Middleware for handling requests
 app.use(express.json());
