@@ -40,7 +40,6 @@ locationModel.createLocation = async (location) => {
 
   const query = `
         INSERT INTO public_washrooms (location_name, address, description, accessibility_notes, hours_of_operation, seasonal_variability_hours, phone, web_link, latitude, longitude, status, reviews)
-VALUES
         VALUES ('${location_name}', '${address}', '${description}', '${accessibility_notes}', '${hours_of_operation}', '${seasonal_variability_hours}', '${phone}', '${web_link}', ${latitude}, ${longitude}, '${status}', '${reviews}')
         RETURNING *
         `;
