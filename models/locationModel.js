@@ -39,13 +39,27 @@ locationModel.createLocation = async (location) => {
   } = location;
 
   const query = `
-        INSERT INTO public_washrooms (location_name, address, description, accessibility_notes, hours_of_operation, seasonal_variability_hours, phone, web_link, latitude, longitude, status, reviews)
-        VALUES ('${location_name}', '${address}', '${description}', '${accessibility_notes}', '${hours_of_operation}', '${seasonal_variability_hours}', '${phone}', '${web_link}', ${latitude}, ${longitude}, '${status}', '${reviews}')
-        RETURNING *
+        INSERT INTO public_washrooms
+        (location_name, address, description, accessibility_notes, hours_of_operation, seasonal_variability_hours, phone, web_link, latitude, longitude, status, reviews)
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+        RETURNING *;
         `;
 
   const newLocation = await pool
-    .query(query)
+    .query(query, [
+      location_name,
+      address,
+      description,
+      accessibility_notes,
+      hours_of_operation,
+      seasonal_variability_hours,
+      phone,
+      web_link,
+      latitude,
+      longitude,
+      status,
+      reviews,
+    ])
     .then((res) => res.rows[0])
     .catch((err) => {
       throw new Error(err);

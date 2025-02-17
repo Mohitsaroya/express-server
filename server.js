@@ -9,6 +9,16 @@ app.use(cors()); // Allow all origins (for development)
 app.use(express.json());
 const locationRoute = require('./routes/locationRoute');
 
+// Listen for unhandled promise rejections and throw an error to ensure they are caught during development.
+process.on('unhandledRejection', (error) => {
+  throw error;
+});
+
+// Listen for uncaught exceptions and log the error details.
+process.on('uncaughtException', (error) => {
+  console.log(error);
+});
+
 // Sample route
 app.get('/', (req, res) => {
   res.send('Hello World!');
